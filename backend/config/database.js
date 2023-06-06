@@ -1,18 +1,23 @@
-import mysql from "mysql2";
+import pgPromise from 'pg-promise';
 
-// create the connection to database
+// create an instance of pg-promise
+const pgp = pgPromise();
 
-const db = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "db_restaurant"
+// create the connection to the database
+const db = pgp({
+    host: 'localhost',
+    user: 'restaurant',
+    password: '123',
+    database: 'db_restaurant',
+    port: 5432, // default PostgreSQL port
 });
 
-
-db.connect(error => {
-  if (error) throw error;
-  console.log("Successfully connected to the database.");
-});
+db.connect()
+    .then(() => {
+        console.log('Successfully connected to the database.');
+    })
+    .catch((error) => {
+        console.error('Error connecting to the database:', error);
+    });
 
 export default db;

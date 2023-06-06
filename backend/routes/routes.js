@@ -10,6 +10,7 @@ import {
 } from "../controllers/food.js";
 
 import {
+    login,
     showAUser,
     createAccount
 } from "../controllers/user.js";
@@ -64,6 +65,9 @@ router.delete("/api/foods/:id", deleteFood);
 
 
 ////////////////////////// USER ////////////////////////////////
+//login
+router.put("/api/users/login/", login);
+
 // get all user
 router.get("/api/users/:email", showAUser);
 

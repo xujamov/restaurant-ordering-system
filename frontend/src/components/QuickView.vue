@@ -57,7 +57,7 @@ export default {
         ...mapState(["allFoods", "user"]),
 
         selectedFood: function () {
-            return this.allFoods.filter((f) => parseInt(f.food_id) == parseInt(this.food));
+            return this.allFoods.filter((f) => parseInt(f.food_id) === parseInt(this.food));
         }
     },
 
@@ -74,14 +74,14 @@ export default {
         async addToCart() {
             let existItem = await axios.get('/cartItem/' + parseInt(this.user.user_id) + '/' + parseInt(this.food));
 
-            if (existItem.data.length == 1) {
+            if (existItem?.data?.user_id) {
                 let data = {
                     user_id: parseInt(this.user.user_id),
                     food_id: parseInt(this.food),
-                    item_qty: parseInt(this.qty) + parseInt(existItem.data[0].item_qty)
+                    item_qty: parseInt(this.qty) + parseInt(existItem.data.item_qty)
                 };
                 await axios.put("/cartItem/", data)
-                this.$refs.alert.showAlert('success', 'Thank you!', 'Add To Cart Successfully !')
+                this.$refs.alert.showAlert('success', 'Thank you!', 'Add To Cart Successfully1 !')
 
             } else {
                 let data = {
@@ -91,7 +91,7 @@ export default {
                 };
 
                 await axios.post("/cartItem/", data)
-                this.$refs.alert.showAlert('success', 'Thank you!', 'Add To Cart Successfully !')
+                this.$refs.alert.showAlert('success', 'Thank you!', 'Add To Cart Successfully2 !')
             }
         }
     },

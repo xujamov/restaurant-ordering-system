@@ -58,6 +58,29 @@ export default {
             this.matchUser = data.data;
         },
 
+        async login() {
+          try {
+            localStorage.removeItem('token')
+
+            let data = {
+              email: this.loginObj.email,
+              password: this.loginObj.pass
+            };
+            let response = await axios.put('/users/login/', data);
+
+            const token = response.data.token; // Assuming the server returns the JWT as 'token'
+
+            // Save the JWT in localStorage or sessionStorage
+            localStorage.setItem('token', token); // Alternatively, use sessionStorage if preferred
+
+            this.matchUser = response.data;
+          } catch (error) {
+            console.error('Error during login:', error);
+            // Handle login errors
+            this.matchUser = undefined;
+          }
+        },
+
         async handleSubmit(e) {
             this.errors = [];
 
@@ -80,19 +103,14 @@ export default {
             }
             else {
                 e.preventDefault();
-                await this.getMatchUser(this.loginObj.email);
+                await this.login();
                 if (!this.matchUser) {
                     this.errors.push("Incorrect email or password!")
                 }
                 else {
-                    if (this.matchUser.user_password === this.loginObj.pass) {
-                        this.matchUser.user_password = "";
-                        this.setUser(this.matchUser);
-                        this.$router.push("/");
-                    }
-                    else {
-                        this.errors.push("Incorrect email or password!")
-                    }
+                      this.matchUser.user_password = "";
+                      this.setUser(this.matchUser);
+                      this.$router.push("/");
                 }
             }
         }
