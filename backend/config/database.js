@@ -5,9 +5,9 @@ const pgp = pgPromise();
 
 // create the connection to the database
 const db = pgp({
-    host: 'localhost',
+    host: 'postgres://restaurant:BBBHXuNnIyb20iEGRYRvxiqcMsSa8jSA@dpg-cikg4a5gkuvinfiv11o0-a/db_restaurant_rccf',
     user: 'restaurant',
-    password: '123',
+    password: 'BBBHXuNnIyb20iEGRYRvxiqcMsSa8jSA',
     database: 'db_restaurant',
     port: 5432, // default PostgreSQL port
 });
