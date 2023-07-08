@@ -5,7 +5,7 @@ import {writeImageName} from "../controllers/food.js";
 // Create an instance of the multer storage and specify destination and filename
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, './backend/images');
+        cb(null, './images');
     },
     filename: function (req, file, cb) {
         const uuid = crypto.randomUUID();
