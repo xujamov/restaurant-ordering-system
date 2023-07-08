@@ -9,18 +9,27 @@ import bodyParser from "body-parser";
 // import cors - provides Express middleware to enable CORS with various options, connect frontend
 import cors from "cors";
 
+import helmet from "helmet";
+
+import middleware from "./middlewares/index.js"
+
 // import routes
 import router from "./routes/routes.js";
 
 // init express
 const app = express();
 
-// use express json
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-
 //use cors
 app.use(cors());
+
+// use express json
+app.use(bodyParser.json());
+app.use(helmet());
+app.use(middleware.decodeToken);
+app.use(bodyParser.urlencoded({ extended: true }));
+
+
+
 
 // use router
 app.use(router);

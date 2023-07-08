@@ -1,12 +1,17 @@
 // import express 
 import express from "express";
+
 // import functions from controller 
 import {
+    getImage,
+    createCategory,
+    showCategories,
+    showProducts,
     showFoods,
     showFoodById,
     createFood,
     updateFood,
-    deleteFood,
+    deleteFood, showCategoryProducts,
 } from "../controllers/food.js";
 
 import {
@@ -42,11 +47,26 @@ import {
     updateBillPaid,
     cancelBillStatus
 } from "../controllers/billstatus.js";
+import {upload} from "../config/multer.js";
 
 // init express router
 const router = express.Router();
 
 ////////////////////////// FOOD ////////////////////////////////
+
+// get image
+router.get("/api/image/:id", getImage)
+
+// add category
+router.post("/api/addCategory", upload.single('image'), createCategory);
+
+// get all categories
+router.get("/api/getCategories", showCategories);
+
+router.get("/api/getProducts", showProducts);
+
+router.get("/api/getCategoryProducts", showCategoryProducts);
+
 // get all Food
 router.get("/api/foods", showFoods);
 
@@ -54,7 +74,7 @@ router.get("/api/foods", showFoods);
 router.get("/api/foods/:id", showFoodById);
 
 // create Food
-router.post("/api/foods", createFood);
+router.post("/api/foods", upload.single('image'), createFood);
 
 // update Food 
 router.put("/api/foods/:id", updateFood);
