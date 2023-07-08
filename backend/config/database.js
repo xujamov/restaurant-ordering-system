@@ -8,7 +8,7 @@ const db = pgp({
     host: 'postgres://restaurant:BBBHXuNnIyb20iEGRYRvxiqcMsSa8jSA@dpg-cikg4a5gkuvinfiv11o0-a/db_restaurant_rccf',
     user: 'restaurant',
     password: 'BBBHXuNnIyb20iEGRYRvxiqcMsSa8jSA',
-    database: 'db_restaurant',
+    database: 'db_restaurant_rccf',
     port: 5432, // default PostgreSQL port
 });
 
