@@ -44,7 +44,7 @@ export const healthcheck=(req,res)=>{
 export const getImage=(req,res)=>{
     const id = req.params.id;
     // Get the image data from the request body or FormData
-    const file = `/home/doniyor/IdeaProjects/restaurant-ordering-system/backend/images/${id}`;
+    const file = `./images/${id}`;
     res.download(file); // Set disposition and send it.
 };
 
