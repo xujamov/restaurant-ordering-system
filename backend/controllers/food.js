@@ -36,6 +36,10 @@ export const writeImageName=(imageName)=>{
     imgName = imageName;
 };
 
+export const healthcheck=(req,res)=>{
+    res.json({message: 'OK', statusCode: 200});
+};
+
 //  upload Image
 export const getImage=(req,res)=>{
     const id = req.params.id;

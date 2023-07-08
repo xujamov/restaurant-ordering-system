@@ -11,7 +11,7 @@ import {
     showFoodById,
     createFood,
     updateFood,
-    deleteFood, showCategoryProducts,
+    deleteFood, showCategoryProducts, healthcheck,
 } from "../controllers/food.js";
 
 import {
@@ -53,6 +53,9 @@ import {upload} from "../config/multer.js";
 const router = express.Router();
 
 ////////////////////////// FOOD ////////////////////////////////
+
+// get image
+router.get("/healthcheck", healthcheck)
 
 // get image
 router.get("/api/image/:id", getImage)
