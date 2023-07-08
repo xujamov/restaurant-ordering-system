@@ -5,7 +5,7 @@ const pgp = pgPromise();
 
 // create the connection to the database
 const db = pgp({
-    host: 'dpg-cikg4a5gkuvinfiv11o0-a.oregon-postgres.render.com',
+    host: 'https://dpg-cikg4a5gkuvinfiv11o0-a.oregon-postgres.render.com',
     user: 'restaurant',
     password: 'BBBHXuNnIyb20iEGRYRvxiqcMsSa8jSA',
     database: 'db_restaurant_rccf',
